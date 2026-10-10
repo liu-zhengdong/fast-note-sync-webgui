@@ -216,6 +216,11 @@ export default {
     "ui.nav.menuSyncLogs": "노트북 업데이트 로그",
     "ui.nav.mainNavigation": "주 탐색",
 
+    // --- ui.mcp ---
+    "ui.mcp.authError": "토큰이 유효하지 않거나 만료되었습니다. 새 MCP 토큰을 생성한 후 다시 시도하세요.",
+    "ui.mcp.permissionError": "토큰 권한 또는 사용 제한으로 인해 연결이 거부되었습니다. MCP 프로토콜, 클라이언트 및 기타 토큰 제한을 확인하세요.",
+    "ui.mcp.applicationError": "서버가 요청을 처리하지 못했습니다. 오류 코드:",
+
     // --- ui.vault ---
     "ui.vault.vault": "노트 저장소",
     "ui.vault.title": "노트 저장소 관리",

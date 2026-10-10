@@ -44,6 +44,9 @@ export function MCPAccess() {
   const errorMessage = (error: MCPConnectionError) => {
     switch (error.kind) {
       case "http": return `${text("httpError", "服务器拒绝请求。请检查令牌、MCP 权限与服务地址。HTTP 状态码：", "The server rejected the request. Check your token, MCP permissions, and endpoint. HTTP status:")} ${error.code}`;
+      case "auth": return text("authError", "令牌无效或已过期。请创建新的 MCP 令牌后重试。", "The token is invalid or expired. Create a new MCP token and try again.");
+      case "forbidden": return text("permissionError", "令牌权限或使用限制拒绝了连接。请检查 MCP 协议、客户端及其他令牌限制。", "Token permissions or usage restrictions rejected the connection. Check the MCP protocol, client, and other token restrictions.");
+      case "application": return `${text("applicationError", "服务器无法完成请求。错误码：", "The server could not complete the request. Code:")} ${error.code ?? "—"}`;
       case "rpc": return `${text("rpcError", "MCP 返回协议错误。错误码：", "MCP returned a protocol error. Code:")} ${error.code ?? "—"}`;
       case "timeout": return text("timeoutError", "连接超时。请检查网络和服务器是否可用。", "The connection timed out. Check your network and server.");
       case "invalidResponse": return text("responseError", "服务器响应不符合 MCP 协议。请检查地址和服务版本。", "The response does not match the MCP protocol. Check the endpoint and server version.");

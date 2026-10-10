@@ -216,6 +216,11 @@ export default {
     "ui.nav.menuSyncLogs": "笔记库更新日志",
     "ui.nav.mainNavigation": "主导航",
 
+    // --- ui.mcp ---
+    "ui.mcp.authError": "令牌无效或已过期。请创建新的 MCP 令牌后重试。",
+    "ui.mcp.permissionError": "令牌权限或使用限制拒绝了连接。请检查 MCP 协议、客户端及其他令牌限制。",
+    "ui.mcp.applicationError": "服务器无法完成请求。错误码：",
+
     // --- ui.vault ---
     "ui.vault.vault": "笔记库",
     "ui.vault.title": "笔记库管理",

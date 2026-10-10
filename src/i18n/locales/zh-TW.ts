@@ -216,6 +216,11 @@ export default {
     "ui.nav.menuSyncLogs": "筆記庫更新日誌",
     "ui.nav.mainNavigation": "主導航",
 
+    // --- ui.mcp ---
+    "ui.mcp.authError": "權杖無效或已過期。請建立新的 MCP 權杖後重試。",
+    "ui.mcp.permissionError": "權杖權限或使用限制拒絕了連線。請檢查 MCP 協定、用戶端及其他權杖限制。",
+    "ui.mcp.applicationError": "伺服器無法完成請求。錯誤碼：",
+
     // --- ui.vault ---
     "ui.vault.vault": "筆記庫",
     "ui.vault.title": "筆記庫管理",

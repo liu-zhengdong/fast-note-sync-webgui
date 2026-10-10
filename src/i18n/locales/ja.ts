@@ -216,6 +216,11 @@ export default {
     "ui.nav.menuSyncLogs": "ノートライブラリ更新ログ",
     "ui.nav.mainNavigation": "メインナビゲーション",
 
+    // --- ui.mcp ---
+    "ui.mcp.authError": "トークンが無効か、有効期限が切れています。新しい MCP トークンを作成して再試行してください。",
+    "ui.mcp.permissionError": "トークンの権限または利用制限により接続が拒否されました。MCP プロトコル、クライアント、およびその他のトークン制限を確認してください。",
+    "ui.mcp.applicationError": "サーバーがリクエストを処理できませんでした。エラーコード：",
+
     // --- ui.vault ---
     "ui.vault.vault": "ノートライブラリ",
     "ui.vault.title": "ノートライブラリ管理",

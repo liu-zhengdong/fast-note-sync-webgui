@@ -28,7 +28,7 @@ export function mcpConfigSnippet(endpoint: string): string {
   return JSON.stringify({ mcpServers: { "fast-note-sync": { url: endpoint, headers: { Authorization: "Bearer <MCP_TOKEN>" } } } }, null, 2);
 }
 
-export type MCPErrorKind = "http" | "rpc" | "invalidResponse" | "timeout" | "network" | "token";
+export type MCPErrorKind = "http" | "auth" | "forbidden" | "application" | "rpc" | "invalidResponse" | "timeout" | "network" | "token";
 export class MCPConnectionError extends Error {
   constructor(public kind: MCPErrorKind, public code?: number) { super(kind); }
 }
@@ -36,6 +36,13 @@ export class MCPConnectionError extends Error {
 type RPCResponse = { jsonrpc: "2.0"; id: number; result?: unknown; error?: { code: number } };
 function rpcResult(value: unknown, id: number): unknown {
   if (!value || typeof value !== "object") throw new MCPConnectionError("invalidResponse");
+  // FNS auth middleware can return a failure envelope with HTTP 200 before JSON-RPC.
+  // Keep only its numeric code; messages and details may contain credentials or paths.
+  if (!("jsonrpc" in value) && "status" in value && value.status === false && "code" in value && typeof value.code === "number" && Number.isSafeInteger(value.code) && value.code >= 0) {
+    const code = value.code;
+    const kind = code >= 306 && code <= 310 ? "auth" : code >= 312 && code <= 315 ? "forbidden" : "application";
+    throw new MCPConnectionError(kind, code);
+  }
   const response = value as RPCResponse;
   if (response.jsonrpc !== "2.0" || response.id !== id) throw new MCPConnectionError("invalidResponse");
   if (response.error) throw new MCPConnectionError("rpc", typeof response.error.code === "number" ? response.error.code : undefined);

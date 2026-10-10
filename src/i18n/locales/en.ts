@@ -216,6 +216,11 @@ export default {
     "ui.nav.menuSyncLogs": "Vault Update Logs",
     "ui.nav.mainNavigation": "Navigation",
 
+    // --- ui.mcp ---
+    "ui.mcp.authError": "The token is invalid or expired. Create a new MCP token and try again.",
+    "ui.mcp.permissionError": "Token permissions or usage restrictions rejected the connection. Check the MCP protocol, client, and other token restrictions.",
+    "ui.mcp.applicationError": "The server could not complete the request. Code:",
+
     // --- ui.vault ---
     "ui.vault.vault": "Vault",
     "ui.vault.title": "Vault Management",

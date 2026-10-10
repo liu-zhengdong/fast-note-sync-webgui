@@ -51,6 +51,37 @@ describe("MCP connection protocol", () => {
     await expect(readMCPResult(json(99, {}), 1)).rejects.toMatchObject({ kind: "invalidResponse" });
     await expect(readMCPResult(new Response("not json"), 1)).rejects.toMatchObject({ kind: "invalidResponse" });
   });
+  it.each([
+    [306, "auth"], [307, "auth"], [308, "auth"], [309, "auth"], [310, "auth"],
+    [312, "forbidden"], [313, "forbidden"], [314, "forbidden"], [315, "forbidden"],
+    [300, "application"],
+  ])("classifies HTTP 200 FNS failure code %i as %s without retaining server content", async (code, kind) => {
+    const fetcher = vi.fn().mockResolvedValue(new Response(JSON.stringify({ status: false, code, message: "server-secret", details: "private-vault", data: { token: "response-token" } }), { headers: { "Content-Type": "application/json" } }));
+    const error = await testMCPConnection("https://notes.test/api/mcp", "wrong-token", {}, { fetcher }).catch(error => error);
+    expect(error).toMatchObject({ kind, code, message: kind });
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    for (const secret of ["server-secret", "private-vault", "response-token", "wrong-token"]) {
+      expect(`${String(error)} ${JSON.stringify(error)}`).not.toContain(secret);
+    }
+    expect(error).not.toHaveProperty("details");
+    expect(error).not.toHaveProperty("data");
+    expect(error).not.toHaveProperty("cause");
+  });
+  it("classifies a REST-only token rejection during tools/list without reporting invalid protocol", async () => {
+    const fetcher = vi.fn()
+      .mockResolvedValueOnce(json(1, { protocolVersion: "2025-03-26", serverInfo: { name: "Notes" } }))
+      .mockResolvedValueOnce(new Response(null, { status: 202 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ status: false, code: 315, message: "Scope restricted", details: "Permission denied: /api/mcp" })));
+    await expect(testMCPConnection("https://notes.test/api/mcp", "rest-only-token", {}, { fetcher })).rejects.toMatchObject({ kind: "forbidden", code: 315, message: "forbidden" });
+  });
+  it("requires a failure envelope with a safe numeric code and leaves JSON-RPC results unchanged", async () => {
+    for (const payload of [{ code: 308 }, { status: true, code: 308 }, { status: false, code: "308" }, { status: false, code: 308.5 }, { status: false, code: -1 }, { status: false, code: Number.MAX_SAFE_INTEGER + 1 }]) {
+      await expect(readMCPResult(new Response(JSON.stringify(payload)), 1)).rejects.toMatchObject({ kind: "invalidResponse" });
+    }
+    const result = { status: false, code: 308, message: "tool data" };
+    expect(await readMCPResult(json(1, result), 1)).toEqual(result);
+    expect(await readMCPResult(new Response(JSON.stringify({ jsonrpc: "2.0", id: 1, result, status: false, code: 308 })), 1)).toEqual(result);
+  });
   it("times out the whole handshake and sanitizes network failures", async () => {
     const fetcher = vi.fn((_url, options) => new Promise<Response>((_resolve, reject) => options.signal.addEventListener("abort", () => reject(new Error("secret")))));
     await expect(testMCPConnection("https://notes.test/api/mcp", "secret", {}, { fetcher, timeoutMs: 5 })).rejects.toMatchObject({ kind: "timeout", message: "timeout" });
