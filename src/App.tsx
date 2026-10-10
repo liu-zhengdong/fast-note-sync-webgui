@@ -27,6 +27,8 @@ const SyncLogManager = lazy(() => import("@/components/sync-log/sync-log-manager
 const AdminSetupDialog = lazy(() => import("@/components/user/admin-setup-dialog").then(m => ({ default: m.AdminSetupDialog })));
 
 
+const MCPAccess = lazy(() => import("@/components/mcp/mcp-access").then(m => ({ default: m.MCPAccess })));
+
 // 加载占位符
 const PageLoading = () => (
   <div className="flex items-center justify-center h-64">
@@ -323,6 +325,9 @@ function App() {
         return (
           <SystemSettings onBack={handleNavigateToVaults} isAdmin={isAdmin} />
         )
+
+      case "mcp":
+        return <MCPAccess />;
 
       case "sync":
         return <SyncBackup />

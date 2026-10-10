@@ -41,6 +41,7 @@ export function TopBar({ onLogout, className }: TopBarProps) {
     files: t("ui.nav.menuFiles"),
     "sync-logs": t("ui.nav.menuSyncLogs"),
     tokens: t("ui.nav.menuTokens"),
+    mcp: t("ui.nav.menuMCP"),
   }
 
   return (

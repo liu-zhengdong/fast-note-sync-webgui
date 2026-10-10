@@ -1,4 +1,4 @@
-import { Library, NotepadText, ArchiveX, Settings, DatabaseBackup, GitPullRequestArrow, Layers, type LucideIcon } from "lucide-react";
+import { Plug, Library, NotepadText, ArchiveX, Settings, DatabaseBackup, GitPullRequestArrow, Layers, type LucideIcon } from "lucide-react";
 import { ProfileButton } from "@/components/navigation/ProfileButton";
 import { useAppStore, type ModuleId } from "@/stores/app-store";
 import { NavItem } from "@/components/navigation/NavItem";
@@ -39,6 +39,7 @@ export function SideRail({ isAdmin, onLogout, className }: SideRailProps) {
   }> = [
       { id: "dashboard", icon: Layers, labelKey: "ui.nav.menuDashboard" },
       { id: "vaults", icon: Library, labelKey: "ui.nav.menuVaults" },
+      { id: "mcp", icon: Plug, labelKey: "ui.nav.menuMCP" },
       { id: "notes", icon: NotepadText, labelKey: "ui.nav.menuNotes" },
       { id: "trash", icon: ArchiveX, labelKey: "ui.nav.menuTrash" },
       { id: "sync", icon: DatabaseBackup, labelKey: "ui.nav.menuSync", isPlanned: true },

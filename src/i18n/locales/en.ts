@@ -209,6 +209,7 @@ export default {
     "ui.nav.menuSettings": "System Settings",
     "ui.nav.menuGit": "Git Automation",
     "ui.nav.menuFiles": "Attachment Management",
+    "ui.nav.menuMCP": "MCP Access",
     "ui.nav.menuTokens": "Token Management",
     "ui.nav.menuShares": "Share Management",
     "ui.nav.menuSettingsBrowser": "Vault Configuration Files",

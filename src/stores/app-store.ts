@@ -14,7 +14,7 @@ import { create } from 'zustand';
  * - git: Git 自动化（计划中）
  * - tokens: 令牌管理
  */
-export type ModuleId = 'dashboard' | 'vaults' | 'notes' | 'files' | 'trash' | 'config' | 'sync' | 'git' | 'settings' | 'sync-logs' | 'tokens';
+export type ModuleId = 'dashboard' | 'vaults' | 'notes' | 'files' | 'trash' | 'config' | 'sync' | 'git' | 'settings' | 'sync-logs' | 'tokens' | 'mcp';
 
 /** Pending navigation info */
 interface PendingNavigation {

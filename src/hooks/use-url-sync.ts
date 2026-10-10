@@ -49,6 +49,7 @@ export function useUrlSync(
 
             if (params.has('dashboard')) module = 'dashboard';
             else if (params.has('vaults')) module = 'vaults';
+            else if (params.has('mcp')) module = 'mcp';
             else if (params.has('config')) module = 'config';
             else if (params.has('notes')) module = 'notes';
             else if (params.has('files')) module = 'files';

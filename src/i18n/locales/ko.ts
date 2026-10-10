@@ -209,6 +209,7 @@ export default {
     "ui.nav.menuSettings": "시스템 설정",
     "ui.nav.menuGit": "Git 자동화",
     "ui.nav.menuFiles": "첨부 파일 관리",
+    "ui.nav.menuMCP": "MCP 연결",
     "ui.nav.menuTokens": "토큰 관리",
     "ui.nav.menuShares": "공유 관리",
     "ui.nav.menuSettingsBrowser": "노트북 설정 파일",

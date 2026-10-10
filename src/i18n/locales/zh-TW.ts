@@ -209,6 +209,7 @@ export default {
     "ui.nav.menuSettings": "系統設置",
     "ui.nav.menuGit": "Git 自動化",
     "ui.nav.menuFiles": "附件管理",
+    "ui.nav.menuMCP": "MCP 接入",
     "ui.nav.menuTokens": "權杖管理",
     "ui.nav.menuShares": "分享管理",
     "ui.nav.menuSettingsBrowser": "筆記庫配置文件",
