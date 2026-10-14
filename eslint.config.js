@@ -41,6 +41,7 @@ export default [
                         'useAuth', 
                         'useConfirmDialog', 
                         'useTheme',
+                        'useToc',
                         'parseFrontmatter',
                         'transformObsidianSyntax',
                         'ParsedFrontmatter',
