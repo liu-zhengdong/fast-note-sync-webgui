@@ -120,7 +120,7 @@ export function OAuthAuthorizeApp() {
 
       <div className="auth-floating-actions">
         <button
-          onClick={() => window.open("https://github.com/haierkeys/fast-note-sync-service", "_blank", "noopener,noreferrer")}
+          onClick={() => window.open("https://github.com/liu-zhengdong/fast-note-sync-service", "_blank", "noopener,noreferrer")}
           className="auth-floating-switcher"
           title="Source Code"
         >

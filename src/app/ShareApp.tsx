@@ -488,7 +488,7 @@ export function ShareApp() {
                     <div className="mx-auto max-w-5xl">
                         <p className="text-sm text-muted-foreground flex items-center justify-center">
                             <span>{t("ui.share.poweredByPrefix")}</span>
-                            <a href="https://github.com/haierkeys/fast-note-sync-service" target="_blank" rel="noreferrer" className="font-semibold text-primary hover:underline mx-1">
+                            <a href="https://github.com/liu-zhengdong/fast-note-sync-service" target="_blank" rel="noreferrer" className="font-semibold text-primary hover:underline mx-1">
                                 Fast Note Sync
                             </a>
                             <span>{t("ui.share.poweredBySuffix")}</span>

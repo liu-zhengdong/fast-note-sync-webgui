@@ -61,7 +61,7 @@ export function AuthForm({ onSuccess, registerIsEnable = true }: AuthFormProps) 
   })
 
   const onSoft = () => {
-    window.open("https://github.com/haierkeys/fast-note-sync-service", "_blank", "noopener,noreferrer")
+    window.open("https://github.com/liu-zhengdong/fast-note-sync-service", "_blank", "noopener,noreferrer")
   }
 
   useEffect(() => {

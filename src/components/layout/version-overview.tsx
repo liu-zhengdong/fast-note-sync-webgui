@@ -229,12 +229,8 @@ export function VersionOverview({ showUpgrade = true, children }: { showUpgrade?
                         <span>{t("ui.system.repo")}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                    <a href="https://github.com/haierkeys/fast-note-sync-service" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate max-w-37.5 sm:max-w-none">
+                    <a href="https://github.com/liu-zhengdong/fast-note-sync-service" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate max-w-37.5 sm:max-w-none">
                         {t("ui.system.githubRepo")}
-                    </a>
-                    <span className="text-muted-foreground">/</span>
-                    <a href="https://cnb.cool/haierkeys/fast-note-sync-service" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline truncate max-w-37.5 sm:max-w-none">
-                        {t("ui.system.cnbMirror")}
                     </a>
                 </div>
                 </div>

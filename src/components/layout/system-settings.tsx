@@ -1,5 +1,5 @@
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, } from "@/components/ui/alert-dialog";
-import { GitBranch, UserPlus, HardDrive, Trash2, Clock, Shield, Loader2, Type, Lock, Save, HelpCircle, Github, Send, RefreshCw, Cpu, Download, Globe, Database, ChevronLeft, ChevronRight, SlidersHorizontal, BookOpen, Share2, Zap, Router, Eye, EyeOff, Plus, Sliders, Cog } from "lucide-react";
+import { GitBranch, UserPlus, HardDrive, Trash2, Clock, Shield, Loader2, Type, Lock, Save, HelpCircle, Github, RefreshCw, Cpu, Download, Globe, Database, ChevronLeft, ChevronRight, SlidersHorizontal, BookOpen, Share2, Zap, Router, Eye, EyeOff, Plus, Sliders, Cog } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { addCacheBuster } from "@/lib/utils/cache-buster";
@@ -19,7 +19,6 @@ const restartPollCancelled = { current: false };
 
 import { VersionOverview } from "./version-overview";
 import { WSClientList } from "./ws-client-list";
-import { SupportList } from "./support-list";
 import { Overview } from "./overview";
 import { UserManagment } from "./user-managment";
 import { SourceProbePanel } from "./source-probe-panel";
@@ -636,58 +635,36 @@ export function SystemSettings({ onBack, isDashboard = false, isAdmin = false }:
                     </Overview>
                 )}
 
-                {/* 看板模式下的 在线客户端 列表 */}
-                {isDashboard && isAdmin && (
-                    <WSClientList />
-                )}
-
-                {/* 看板模式下的 帮助与建议 Box */}
-                {isDashboard && (
-                    <div className="rounded-xl border border-border bg-card p-6 space-y-4 custom-shadow">
-                        <h2 className="text-lg font-bold text-card-foreground flex items-center gap-2">
-                            <HelpCircle className="h-5 w-5" />
-                            {t("ui.common.helpAndSupport")}
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <a
-                                href="https://github.com/haierkeys/fast-note-sync-service/issues/new"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-3 p-3 rounded-xl bg-muted/30 hover:bg-primary/5 border border-border/50 hover:border-primary/20 transition-all group"
-                            >
-                                <div className="p-2 rounded-lg bg-background border border-border group-hover:border-primary/20 transition-colors">
-                                    <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                                </div>
-                                <div className="min-w-0">
-                                    <p className="text-sm font-medium truncate">{t("ui.common.githubIssue")}</p>
-                                    <p className="text-xs text-muted-foreground truncate">{t("ui.common.githubIssueDesc")}</p>
-                                </div>
-                            </a>
-                            <a
-                                href="https://t.me/obsidian_users"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-3 p-3 rounded-xl bg-muted/30 hover:bg-primary/5 border border-border/50 hover:border-primary/20 transition-all group"
-                            >
-                                <div className="p-2 rounded-lg bg-background border border-border group-hover:border-primary/20 transition-colors">
-                                    <Send className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                                </div>
-                                <div className="min-w-0">
-                                    <p className="text-sm font-medium truncate">{t("ui.common.telegramGroup")}</p>
-                                    <p className="text-xs text-muted-foreground truncate">{t("ui.common.telegramGroupDesc")}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                )}
             </div>
 
             {/* 右列：Tabs 设置区域 */}
             <div className="flex flex-col gap-4">
                 {isDashboard ? (
-                    <div className="rounded-2xl border border-border/60 bg-card/50 backdrop-blur-sm p-4 custom-shadow">
-                        <SupportList />
-                    </div>
+                    <>
+                        {isAdmin && <WSClientList />}
+                        <div className="rounded-xl border border-border bg-card p-6 space-y-4 custom-shadow">
+                            <h2 className="text-lg font-bold text-card-foreground flex items-center gap-2">
+                                <HelpCircle className="h-5 w-5" />
+                                {t("ui.common.helpAndSupport")}
+                            </h2>
+                            <div className="grid grid-cols-1 gap-3">
+                                <a
+                                    href="https://github.com/liu-zhengdong/fast-note-sync-service/issues/new"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-3 p-3 rounded-xl bg-muted/30 hover:bg-primary/5 border border-border/50 hover:border-primary/20 transition-all group"
+                                >
+                                    <div className="p-2 rounded-lg bg-background border border-border group-hover:border-primary/20 transition-colors">
+                                        <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <p className="text-sm font-medium truncate">{t("ui.common.githubIssue")}</p>
+                                        <p className="text-xs text-muted-foreground truncate">{t("ui.common.githubIssueDesc")}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </>
                 ) : config ? (
                     <div className="rounded-xl border border-border bg-card custom-shadow overflow-hidden flex flex-col">
                         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
